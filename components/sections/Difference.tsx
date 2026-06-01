@@ -5,26 +5,27 @@ import { Button } from "@/components/ui/Button";
 export function Difference() {
   return (
     <section className="relative overflow-hidden bg-cocoa">
-      {/* arched-top image band (Figma dome top). The cocoa section bg shows in the
-          top corners, so the blurred two-faces image reads as a curved dome. */}
-      <div
-        className="absolute inset-0 z-0 overflow-hidden"
-        style={{
-          borderTopLeftRadius: "50% 90px",
-          borderTopRightRadius: "50% 90px",
-        }}
-      >
-        {/* two-faces image — natural fit, biased to the faces, soft blur (Figma).
-            -inset over-fills so the blur leaves no edge gaps. */}
+      {/* image band — NO clip (so there is no hard edge / rim). The dome shape comes
+          purely from a soft cocoa radial-gradient cap on top, so the edge is a smooth
+          cocoa→image fade: no line, no grey. */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        {/* two-faces image — natural fit, biased to the faces, soft blur (Figma) */}
         <div
-          className="absolute -inset-6 bg-cover bg-[center_30%] bg-coffee blur-[3px]"
+          className="absolute inset-0 bg-cover bg-[center_30%] bg-coffee blur-[3px]"
           style={{ backgroundImage: `url(${difference.image})` }}
         />
         {/* overlay so the text reads, without washing the image out */}
         <div className="absolute inset-0 bg-noir/45" />
-        {/* TOP fade — hides the light/grey strip at the arch edge by blending the
-            image into the cocoa dome */}
-        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-cocoa via-cocoa/75 to-transparent" />
+        {/* COCOA DOME CAP — radial gradient: solid cocoa across the top, fading into
+            the image along a clearly convex (arch) curve. Narrower ellipse = more
+            pronounced dome; smooth fade = no line, no grey. */}
+        <div
+          className="absolute inset-x-0 top-0 h-[300px]"
+          style={{
+            background:
+              "radial-gradient(115% 300px at 50% 100%, transparent 38%, #43392F 64%)",
+          }}
+        />
         {/* slim bottom blend with the section below */}
         <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-plum/60 to-transparent" />
       </div>
