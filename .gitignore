@@ -1,0 +1,13 @@
+/node_modules
+/.next
+/out
+.DS_Store
+*.tsbuildinfo
+.env*
+
+# logs
+dev.log
+install.log
+
+# local agent/session data
+.claude/
